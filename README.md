@@ -50,10 +50,25 @@ DB_NAME = '数据库名'
 python3 main.py
 ```
 
-使用进程守护supervisor（其他的也行），防止进程死掉，项目运行在`8710`端口，如果存在端口冲突可以在`main.py`文件的最后来修改为你自己喜欢的端口
+使用进程守护supervisor（其他的也行），防止进程死掉，项目运行在`8710`端口，如果存在端口冲突可以在`main.py`文件的最后来修改为你自己喜欢的端口，**首次登录需要自行注册账号**
 
 
 ```python
 app.run(host='0.0.0.0', port=<改成你喜欢的>, debug=False)
 ```
+
+
+----
+### 4.页面预览
+
+
+![80ade0663b759330514548651b5b7a66](https://github.com/user-attachments/assets/84d6f485-7a68-4f11-990b-ff42992b9781)
+
+
+![fbebc25439ba4482f47e8e70674c13bf](https://github.com/user-attachments/assets/ad652ca2-1983-4f6a-8805-58dff4e19bdc)
+
+
+![459bb7c3f14cb6d85a3a4ca6552e8dae](https://github.com/user-attachments/assets/bd720ca0-3133-4174-94f4-ac609d4ba4a1)
+
+
 
