@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+{% block content %}
+<h2 class="mb-3">个人信息 & SMTP/企业微信配置</h2>
+<div class="card card-happy p-4 animate__animated animate__fadeIn">
+  <form method="POST">
+    <div class="mb-3">
+      <label class="form-label">收件邮箱</label>
+      <input type="email" name="email" value="{{ user.email }}" class="form-control">
+    </div>
+    <div class="mb-3">
+      <label class="form-label">SMTP服务器</label>
+      <input type="text" name="smtp_server" value="{{ user.smtp_server }}" class="form-control">
+    </div>
+    <div class="mb-3">
+      <label class="form-label">SMTP端口</label>
+      <input type="number" name="smtp_port" value="{{ user.smtp_port }}" class="form-control">
+    </div>
+    <div class="mb-3">
+      <label class="form-label">SMTP用户</label>
+      <input type="text" name="smtp_user" value="{{ user.smtp_user }}" class="form-control">
+    </div>
+    <div class="mb-3">
+      <label class="form-label">SMTP密码</label>
+      <input type="password" name="smtp_password" value="{{ user.smtp_password }}" class="form-control">
+    </div>
+    <div class="mb-3">
+      <label class="form-label">企业微信Webhook</label>
+      <input type="text" name="wechat_webhook" value="{{ user.wechat_webhook }}" class="form-control">
+    </div>
+    <div>
+      <button type="submit" class="btn btn-primary">保存</button>
+      <a href="{{ url_for('index') }}" class="btn btn-link">返回列表</a>
+    </div>
+  </form>
+</div>
+{% endblock %}

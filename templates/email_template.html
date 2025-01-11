@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>任务提醒</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #fff9ec;
+      margin: 0 auto;
+      padding: 20px;
+      max-width: 600px;
+    }
+    .card {
+      background: #ffffff;
+      border: 1px solid #ffc;
+      padding: 20px;
+      border-radius: 8px;
+    }
+    .card h2 {
+      color: #ff8c00;
+      margin-bottom: 1rem;
+    }
+    .illustration {
+      text-align: center;
+      margin: 1rem 0;
+    }
+    .illustration img {
+      width: 150px;
+      opacity: 0.9;
+    }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <h2>您好，{{ username }}，这是{{ note }}：</h2>
+    <div class="illustration">
+      <img src="https://cdn-icons-png.flaticon.com/512/1518/1518180.png" alt="Reminder Illustration"/>
+    </div>
+    <p><strong>任务：</strong> {{ task_name }}</p>
+    <p><strong>内容：</strong> {{ message }}</p>
+    <p><strong>提醒时间：</strong> {{ remind_date }} {{ remind_time }}</p>
+    <p><strong>重复模式：</strong>
+      {% if repeat_type == 'none' %}无
+      {% elif repeat_type == 'daily' %}每天
+      {% elif repeat_type == 'weekly' %}每周
+      {% elif repeat_type == 'monthly' %}每月
+      {% endif %}
+    </p>
+    <hr>
+    <p style="color: #888;">
+      <small>—— 来自 TimedReminder 系统，祝您心情愉快！</small>
+    </p>
+  </div>
+</body>
+</html>

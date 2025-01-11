@@ -1,0 +1,69 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="d-flex justify-content-between align-items-center mb-3">
+  <h2>任务列表</h2>
+  <a href="{{ url_for('logout') }}" class="btn btn-danger">退出登录</a>
+</div>
+
+<form method="GET" action="{{ url_for('index') }}" class="d-flex flex-wrap gap-2 mb-4 align-items-center">
+
+  <div>
+    <input type="text" name="q" class="form-control" placeholder="搜索任务名称..." value="{{ q }}"
+           style="min-width: 180px;">
+  </div>
+
+  <div>
+    <button type="submit" class="btn btn-secondary">搜索</button>
+  </div>
+
+  <div>
+    <a href="{{ url_for('add_task') }}" class="btn btn-primary">新建任务</a>
+  </div>
+
+  <div>
+    <a href="{{ url_for('profile') }}" class="btn btn-outline-info">个人配置</a>
+  </div>
+</form>
+
+<div class="accordion animate__animated animate__fadeIn" id="taskAccordion">
+  {% for t in tasks %}
+  <div class="accordion-item">
+    <h2 class="accordion-header" id="heading{{ t.id }}">
+      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+              data-bs-target="#collapse{{ t.id }}">
+        {{ t.task_name }}
+        {% if t.is_completed %}
+          <span class="badge bg-success ms-2">已完成</span>
+        {% elif t.has_final_reminded %}
+          <span class="badge bg-warning text-dark ms-2">最后提醒已发送</span>
+        {% else %}
+          <span class="badge bg-info text-dark ms-2">进行中</span>
+        {% endif %}
+      </button>
+    </h2>
+    <div id="collapse{{ t.id }}" class="accordion-collapse collapse" data-bs-parent="#taskAccordion">
+      <div class="accordion-body">
+        <p><strong>内容：</strong>{{ t.message }}</p>
+        <p><strong>提醒时间：</strong>{{ t.remind_date }} {{ t.remind_time }}</p>
+        <p><strong>提前天数：</strong>
+          {% if t.advance_days %}{{ t.advance_days }}{% else %}无{% endif %}
+        </p>
+        <p><strong>重复：</strong>
+          {% if t.repeat_type == 'none' %}无
+          {% elif t.repeat_type == 'daily' %}每天
+          {% elif t.repeat_type == 'weekly' %}每周
+          {% elif t.repeat_type == 'monthly' %}每月
+          {% endif %}
+        </p>
+        <p>
+          <a href="{{ url_for('edit_task', task_id=t.id) }}" class="btn btn-sm btn-outline-info">编辑</a>
+          <form action="{{ url_for('delete_task', task_id=t.id) }}" method="POST" style="display:inline;">
+            <button type="submit" class="btn btn-sm btn-outline-danger" onclick="return confirm('确认删除该任务？')">删除</button>
+          </form>
+        </p>
+      </div>
+    </div>
+  </div>
+  {% endfor %}
+</div>
+{% endblock %}

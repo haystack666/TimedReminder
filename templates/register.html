@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="row justify-content-center mt-4">
+  <div class="col-12 col-md-6">
+    <div class="card card-happy p-4 animate__animated animate__fadeIn">
+      <h2 class="mb-3 text-center">注册账号</h2>
+      <form method="POST">
+        <div class="mb-3">
+          <label class="form-label">用户名</label>
+          <input type="text" name="username" class="form-control" required>
+        </div>
+        <div class="mb-3">
+          <label class="form-label">密码</label>
+          <input type="password" name="password" class="form-control" required>
+        </div>
+        <div class="text-center mt-4">
+          <button type="submit" class="btn btn-primary w-100 w-md-auto">注册</button>
+        </div>
+        <div class="mt-3 text-center">
+          <a href="{{ url_for('login') }}">已有账号？去登录</a>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+{% endblock %}

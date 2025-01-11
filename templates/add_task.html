@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+{% block content %}
+<h2 class="mb-3">新建任务</h2>
+<div class="card card-happy p-4 animate__animated animate__fadeIn">
+  <form method="POST">
+    <div class="mb-3">
+      <label class="form-label">任务名称</label>
+      <input type="text" name="task_name" class="form-control" required>
+    </div>
+    <div class="mb-3">
+      <label class="form-label">任务内容</label>
+      <textarea name="message" rows="3" class="form-control"></textarea>
+    </div>
+    <div class="row mb-3">
+      <div class="col-12 col-sm-6">
+        <label class="form-label">提醒日期</label>
+        <input type="date" name="remind_date" class="form-control" required>
+      </div>
+      <div class="col-12 col-sm-6 mt-3 mt-sm-0">
+        <label class="form-label">提醒时间</label>
+        <input type="time" name="remind_time" class="form-control" required>
+      </div>
+    </div>
+    <div class="mb-3">
+      <label class="form-label">重复</label>
+      <select name="repeat_type" class="form-select">
+        <option value="none">不重复</option>
+        <option value="daily">每天</option>
+        <option value="weekly">每周</option>
+        <option value="monthly">每月</option>
+      </select>
+    </div>
+    <div class="mb-3">
+      <label class="form-label">提前天数（多选）</label><br>
+      {% for d in possible_advance_days %}
+        <div class="form-check form-check-inline">
+          <input class="form-check-input" type="checkbox" name="advance_days" value="{{ d }}" id="adv{{ d }}">
+          <label class="form-check-label" for="adv{{ d }}">提前 {{ d }} 天</label>
+        </div>
+      {% endfor %}
+      <small class="text-muted d-block mt-1">可同时勾选多个</small>
+    </div>
+    <div class="mt-4 text-center">
+      <button type="submit" class="btn btn-primary me-3 w-50 w-sm-auto">提交</button>
+      <a href="{{ url_for('index') }}" class="btn btn-link">返回列表</a>
+    </div>
+  </form>
+</div>
+{% endblock %}
