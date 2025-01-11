@@ -71,4 +71,7 @@ app.run(host='0.0.0.0', port=<改成你喜欢的>, debug=False)
 ![459bb7c3f14cb6d85a3a4ca6552e8dae](https://github.com/user-attachments/assets/bd720ca0-3133-4174-94f4-ac609d4ba4a1)
 
 
+----
+### 5.不提供任何技术支持
+
 
